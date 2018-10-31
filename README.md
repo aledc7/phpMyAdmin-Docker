@@ -43,8 +43,10 @@ once inside the phpmyadmin docker, we will find the main configuration file in t
 /etc/phpmyadmin/config.inc.php
 ```
 Finally, it only remains to add the following fragment of code, replacing the data 'verbose', 'host', and other data that are different from yours
+
 ```
 /* Agregado por AleDC - Esto permite multiple Host */
+
 $i++;
 $cfg['Servers'][$i]['verbose'] = 'mautic_mauticdb_1';
 $cfg['Servers'][$i]['host'] = 'mautic_mauticdb_1';
@@ -54,9 +56,24 @@ $cfg['Servers'][$i]['connect_type'] = 'tcp';
 $cfg['Servers'][$i]['extension'] = 'mysqli';
 $cfg['Servers'][$i]['auth_type'] = 'cookie';
 $cfg['Servers'][$i]['AllowNoPassword'] = false;
-,,,
+```
+
+In case it does not work, verify that both containers are in the same docker network.
 
 
+2- add the same network to the docker that does not have it
+
+1- Inspect the dockers and verify which network are assigned, find the parameter "Networks": {
+```
+docker inspect docker_name
+```
+2- add the same network to the docker that does not have it
+```
+docker network connect docker_network_name docker_name_to_asign_the_network
+```
+that is all
+
+- [x] Ale DC
 
 
 
