@@ -27,5 +27,36 @@ docker run --name myadmin -d --link root_mariadb_1:bitnami_suitecrm --network ro
 http://your_domain:34343/
 
 
+##### Add Multiple Hosts in phpMyAdmin
+
+You may want to access different database engines with the same instance of phpMyAdmin.
+This is possible by editing the phpmyadmin configuration file, located inside the phpMyAdmin docker.
+
+First of all it is necessary to access the bash of the docker, we must consider that the phpmyadmin docker __does not have bash incorporated__, therefore the way to access will be different from the traditional one (docker exec -u 0 -it / bin / bash) this form It will not work with this particular docker. Therefore we must access in this other way usin **busybox ash**:
+
+```
+docker exec -it docker_name busybox ash
+```
+once inside the phpmyadmin docker, we will find the main configuration file in the following location:
+
+```
+/etc/phpmyadmin/config.inc.php
+```
+Finally, it only remains to add the following fragment of code, replacing the data 'verbose', 'host', and other data that are different from yours
+```
+/* Agregado por AleDC - Esto permite multiple Host */
+$i++;
+$cfg['Servers'][$i]['verbose'] = 'mautic_mauticdb_1';
+$cfg['Servers'][$i]['host'] = 'mautic_mauticdb_1';
+$cfg['Servers'][$i]['port'] = '3306';
+$cfg['Servers'][$i]['socket'] = '';
+$cfg['Servers'][$i]['connect_type'] = 'tcp';
+$cfg['Servers'][$i]['extension'] = 'mysqli';
+$cfg['Servers'][$i]['auth_type'] = 'cookie';
+$cfg['Servers'][$i]['AllowNoPassword'] = false;
+,,,
+
+
+
 
 
