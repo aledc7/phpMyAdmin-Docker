@@ -26,8 +26,8 @@ docker run --name myadmin -d --link root_mariadb_1:bitnami_suitecrm --network ro
 
 http://your_domain:34343/
 
-
-##### Add Multiple Hosts in phpMyAdmin
+_______________________________________________________________________________________________________________________
+### Add Multiple Hosts in phpMyAdmin
 
 You may want to access different database engines with the same instance of phpMyAdmin.
 This is possible by editing the phpmyadmin configuration file, located inside the phpMyAdmin docker.
