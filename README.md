@@ -56,6 +56,11 @@ $cfg['Servers'][$i]['connect_type'] = 'tcp';
 $cfg['Servers'][$i]['extension'] = 'mysqli';
 $cfg['Servers'][$i]['auth_type'] = 'cookie';
 $cfg['Servers'][$i]['AllowNoPassword'] = false;
+
+# Esto permite poder borrar las bases de datos, por defecto a veces viene deshabilitado
+
+$cfg['AllowUserDropDatabase'] = false;
+
 ```
 
 In case it does not work, verify that both containers are in the same docker network.
