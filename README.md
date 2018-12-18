@@ -57,7 +57,7 @@ $cfg['Servers'][$i]['extension'] = 'mysqli';
 $cfg['Servers'][$i]['auth_type'] = 'cookie';
 $cfg['Servers'][$i]['AllowNoPassword'] = false;
 
-# Esto permite poder borrar las bases de datos, por defecto a veces viene deshabilitado
+# Esta linea de abajo permite borrar las bases de datos, por defecto a veces viene deshabilitado
 
 $cfg['AllowUserDropDatabase'] = false;
 
