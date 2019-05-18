@@ -1,6 +1,8 @@
 # phpMyAdmin-Docker
 how to deploy phpMyAdmin on Docker
 
+[<img src="https://github.com/aledc7/PHP-Certification/blob/master/aledc-logo.png?raw=true">](https://aledc.com)
+
 - [x] Ale DC
 
 ### This Document describes the implementation of phpMyAdmin Docker on your Centos or Ubuntu Server.
