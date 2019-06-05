@@ -14,7 +14,7 @@ how to deploy phpMyAdmin on Docker
 
 ###### 1 - First download the official image of phpMyAdmin.
 
-```
+```js
 docker pull phpmyadmin/phpmyadmin
 ```
 
@@ -23,7 +23,7 @@ Keep in mind that both must be in the same network.  (you can verify this by __"
 
 ###### 3- Once I know the network used, the name of the database, I proceed to run the phpmyadmi docker, in this opportunity I will use port 34343.
 
-```
+```js
 docker run --name myadmin -d --link root_mariadb_1:bitnami_suitecrm --network root_default -p 34343:80 -e PMA_HOST=root_mariadb_1 phpmyadmin/phpmyadmin
 ```
 
@@ -39,17 +39,17 @@ This is possible by editing the phpmyadmin configuration file, located inside th
 
 First of all it is necessary to access the bash of the docker, we must consider that the phpmyadmin docker __does not have bash incorporated__, therefore the way to access will be different from the traditional one (docker exec -u 0 -it / bin / bash) this form It will not work with this particular docker. Therefore we must access in this other way usin **busybox ash**:
 
-```
+```js
 docker exec -it docker_name busybox ash
 ```
 once inside the phpmyadmin docker, we will find the main configuration file in the following location:
 
-```
+```js
 /etc/phpmyadmin/config.inc.php
 ```
 Finally, it only remains to add the following fragment of code, replacing the data 'verbose', 'host', and other data that are different from yours
 
-```
+```js
 /* Agregado por AleDC - Esto permite multiple Host */
 
 $i++;
@@ -72,11 +72,11 @@ In case it does not work, verify that both containers are in the same docker net
 
 
 1- Inspect the dockers and verify which network are assigned, find the parameter "Networks": {
-```
+```js
 docker inspect docker_name
 ```
 2- add the same network to the docker that does not have it
-```
+```js
 docker network connect docker_network_name docker_name_to_asign_the_network
 in my case:
 docker network connect root_default mautic_mauticdb_1
